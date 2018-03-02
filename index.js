@@ -7,20 +7,14 @@ const connString = 'HostName=badhost.azure-devices.net;DeviceId=fakedevice;Share
 let client;
 
 console.log('using connection string with BAD HostName...');
-try {
-    console.log('creating client...');
-    client = iotDeviceMqtt.clientFromConnectionString(connString);
-    // client.setRetryPolicy(new NoRetry());
-}
-catch (exc) {
-    console.log(`exception caught: ${exc}`);
-}
-finally {
-    if(client) console.log('created client');
-    console.log('opening client...');
-    client.open((err,result) => {
-        if(!err) console.log('client open')
-        else console.log(`couldn't open the client (${err})`);
-    })
-}
 
+console.log('creating client...');
+client = iotDeviceMqtt.clientFromConnectionString(connString);
+// client.setRetryPolicy(new NoRetry());
+
+if (client) console.log('created client');
+console.log('opening client...');
+client.open((err, result) => {
+    if (!err) console.log('client open')
+    else console.log(`couldn't open the client (${err})`);
+})
